@@ -37,6 +37,10 @@
         }
         .p-menubar{
             border: none;
+
+            .p-menuitem-text{
+                color: #868e96 !important;
+            }
         }
     }
 </style>
