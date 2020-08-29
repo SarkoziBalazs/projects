@@ -41,6 +41,9 @@ export default {
   plugins: [
     "~/plugins/prime.js"
   ],
+  markdownit: {
+    injected: true
+  },
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -57,6 +60,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/markdownit'
   ],
   /*
   ** Axios module configuration
