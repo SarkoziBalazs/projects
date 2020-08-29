@@ -38,6 +38,7 @@
 </script>
 
 <style lang="scss">
+
     h1{
         color: #000;
         font-size: 3em;
@@ -46,5 +47,7 @@
 
     .project{
         font-size: 20px;
+        max-width: 800px !important;
+        margin: auto;
     }
 </style>

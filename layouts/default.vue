@@ -22,6 +22,6 @@
 <style lang="scss">
   .content{
     margin: auto;
-    max-width: 800px;
+    max-width: 1200px;
   }
 </style>
