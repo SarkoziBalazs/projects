@@ -6,7 +6,7 @@
           <div
             v-for="(translation,index) in entry.fields.preview"
             :key="index"
-            v-if="index === 'en-US'"
+            v-if="index === $store.getters['locale/selectedLocale'].name"
             v-html="$md.render(translation)"
           >
           </div>

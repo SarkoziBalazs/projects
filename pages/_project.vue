@@ -1,14 +1,13 @@
 <template>
     <div class="project">
         <div v-for="(val, locale) in project.fields.title">
-            <h1 v-if="locale === 'en-US'">
+            <h1 v-if="locale === $store.getters['locale/selectedLocale'].name">
                 {{val}}
             </h1>
         </div>
 
         <div v-for="(val, locale) in project.fields.content">
-            <div v-if="locale === 'en-US'" v-html="$md.render(val)">
-
+            <div v-if="locale === $store.getters['locale/selectedLocale'].name" v-html="$md.render(val)">
             </div>
         </div>
     </div>
@@ -30,7 +29,6 @@
                 content_type: "blogPost",
                 'fields.slug.en-US' : this.$route.params.project
             })
-
 
             this.project = project.items[0]
         }
