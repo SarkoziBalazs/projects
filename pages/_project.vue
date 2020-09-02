@@ -43,6 +43,16 @@
         font-weight:400;
     }
 
+    img{
+        max-width: 100%;
+    }
+
+    em{
+        display: block;
+        font-size: 0.8em;
+        text-align: center;
+    }
+
     .project{
         font-size: 20px;
         max-width: 800px !important;
