@@ -1,10 +1,29 @@
 <template>
     <div class="project">
-        <div v-for="(val, locale) in project.fields.title">
-            <h1 v-if="locale === $store.getters['locale/selectedLocale'].name">
+        <div
+            v-for="(val, locale) in project.fields.title"
+            v-if="locale === $store.getters['locale/selectedLocale'].name"
+        >
+            <h1>
                 {{val}}
             </h1>
         </div>
+        <small>
+            <span>
+            Tags:
+                <span
+                    v-for="(val,locale) in project.fields.tags"
+                    v-if="locale === $store.getters['locale/selectedLocale'].name"
+                >
+                    <span v-for="tag in val">
+                        {{tag}};
+                    </span>
+                </span>
+            </span>
+            <span class="align-right">
+                By Balázs on {{project.fields.publicationDate['en-US']}}
+            </span>
+        </small>
 
         <div v-for="(val, locale) in project.fields.content">
             <div v-if="locale === $store.getters['locale/selectedLocale'].name" v-html="$md.render(val)">
@@ -57,5 +76,17 @@
         font-size: 20px;
         max-width: 800px !important;
         margin: auto;
+    }
+
+    small{
+        color: #00000085;
+        margin-top: -2.5em;
+        display: block;
+        position: relative;
+
+        span.align-right{
+            position: absolute;
+            right: 0;
+        }
     }
 </style>
