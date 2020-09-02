@@ -1,5 +1,14 @@
 <template>
   <div>
+    <div
+        v-for="(translation,index) in intro.fields.content"
+        :key="index"
+    >
+      <h1 class="p-text-center" v-if="index === $store.getters['locale/selectedLocale'].name">
+        {{translation}}
+      </h1>
+    </div>
+
     <div class="p-grid">
       <div class="p-col-6 p-col-md-12" v-for="(entry, index) in previews" :key="index">
         <div class="p-panel">
@@ -10,9 +19,21 @@
             v-html="$md.render(translation)"
           >
           </div>
-          <div class="link" v-for="(translation,index) in entry.fields.slug" :key="index">
-            <nuxt-link v-if="index === 'en-US'" :to="'/'+translation">
-              <Button label="Learn more"/>
+          <div
+              class="link"
+              v-for="(translation,index) in entry.fields.slug"
+              :key="index"
+              v-if="index === 'en-US'"
+          >
+            <nuxt-link :to="'/'+ translation">
+              <Button
+                  v-if="$store.getters['locale/selectedLocale'].name === 'en-US'"
+                  label="Project introduction"
+              />
+              <Button
+                  v-if="$store.getters['locale/selectedLocale'].name === 'hu'"
+                  label="Project bemutatása"
+              />
             </nuxt-link>
           </div>
         </div>
@@ -28,8 +49,9 @@
     layout: "default",
     data(){
       let previews = [];
+      let intro = null
       return {
-        previews
+        previews, intro
       }
     },
     async fetch(){
@@ -42,6 +64,10 @@
       }).then(function(entries){
         return entries.items
       })
+
+      this.intro = await contentfulClient().then(function(client){
+        return client.getEntry("pUbpBzOevcabIcyAr5Jyl")
+      })
     },
     methods: {
 
@@ -50,6 +76,12 @@
 </script>
 
 <style lang="scss">
+  h1{
+    font-weight:400;
+    font-size: 2.5em !important;
+    color: #868e96 !important;
+  }
+
   .entry{
     border: 1px solid lightgray;
     border-radius: 20px;
